@@ -1,0 +1,30 @@
+feature,availability,leakage_risk,recommendation,rationale
+ENCOUNTERCLASS,Candidate,Low,Include,Encounter class is recorded for the current encounter.
+START_YEAR,Candidate,Low,Include,Calendar year is known from encounter START.
+START_MONTH,Candidate,Low,Include,Calendar month is known from encounter START.
+START_DAY_OF_WEEK,Candidate,Low,Include,Day of week is known from encounter START.
+START_HOUR,Candidate,Low,Include,Start hour is known from encounter START.
+AGE_AT_ENCOUNTER,Candidate,Low,Include after quality checks,Age can be calculated from birthdate and encounter START.
+GENDER,Candidate with review,Fairness consideration,Evaluate carefully,Demographic feature; assess fairness and necessity.
+RACE,Candidate with review,Fairness consideration,Evaluate carefully,Demographic feature; assess fairness and necessity.
+ETHNICITY,Candidate with review,Fairness consideration,Evaluate carefully,Demographic feature; assess fairness and necessity.
+PRIOR_ENCOUNTER_COUNT,Candidate,Low if correctly constructed,Include,Counts only encounters preceding the current encounter.
+DAYS_SINCE_PREVIOUS_ENCOUNTER,Candidate,Low if correctly constructed,Include with missing-value handling,Uses the previous encounter START only.
+PRIOR_ENCOUNTERS_30_DAYS,Candidate,Low if correctly constructed,Include,Counts encounters before the current encounter within the previous 30 days.
+PRIOR_ENCOUNTERS_90_DAYS,Candidate,Low if correctly constructed,Include,Counts encounters before the current encounter within the previous 90 days.
+DURATION_HOURS,Available at encounter end,Low at STOP; leakage for earlier prediction,Include for end-of-encounter prediction,Duration is known when STOP is reached.
+ORGANIZATION,Conditional,Potential workflow dependency,Review before inclusion,Confirm the organization is known at prediction time.
+PAYER,Conditional,Potential workflow dependency,Review before inclusion,Confirm payer information is available by encounter end.
+CODE,Conditional,Potential coding delay,Review before inclusion,Confirm the encounter code is finalized by STOP.
+DESCRIPTION,Conditional,Potential coding delay,Review before inclusion,Confirm the encounter description is finalized by STOP.
+BASE_ENCOUNTER_COST,Conditional,Potential post-encounter calculation,Review before inclusion,Confirm this cost is available at encounter completion.
+TOTAL_CLAIM_COST,Potentially post-encounter,High,Exclude initially,Claim costs may be finalized after the prediction point.
+PAYER_COVERAGE,Potentially post-encounter,High,Exclude initially,Coverage may be calculated or updated after encounter end.
+REASONCODE,Potentially post-encounter,High,Exclude initially,May be assigned after the encounter or through billing.
+REASONDESCRIPTION,Potentially post-encounter,High,Exclude initially,May be assigned after the encounter or through billing.
+PROCEDURES,Timing not established,Potentially high,Exclude initially,Procedure timing relative to STOP is not established.
+DEATHDATE,Future or post-event information,Very high,Exclude,May reveal future information unavailable at prediction.
+PATIENT,Identifier,Identity memorization,Exclude from predictors,"Use only for grouping, history construction, and splitting."
+NEXT_START_AFTER_STOP,Future outcome information,Direct target leakage,Exclude from predictors,Used only to construct the repeat-encounter target.
+DAYS_TO_NEXT_AFTER_STOP,Future outcome information,Direct target leakage,Exclude from predictors,Directly determines the repeat-encounter target.
+REPEAT_WITHIN_7_DAYS,Target,Target,Target only,This is the outcome to be predicted.

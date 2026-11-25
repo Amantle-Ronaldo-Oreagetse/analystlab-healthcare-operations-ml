@@ -1,0 +1,5 @@
+check,result
+Target columns excluded from candidate predictors,True
+Patient identifier excluded from predictors,True
+Historical features use prior encounters,True
+Duration available at end-of-encounter prediction point,True

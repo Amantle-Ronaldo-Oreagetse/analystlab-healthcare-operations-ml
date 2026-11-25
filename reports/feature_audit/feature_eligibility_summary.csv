@@ -1,0 +1,13 @@
+dataset,eligibility_decision,feature_count
+derived,Eligible,8
+derived,Exclude,2
+derived,Target only,1
+encounters,Conditional,7
+encounters,Eligible,1
+encounters,Eligible after transformation,1
+encounters,Eligible for feature derivation only,1
+encounters,Exclude,4
+patients,Conditional,5
+patients,Eligible for feature derivation only,1
+patients,Exclude,8
+patients,Exclude from primary model,6

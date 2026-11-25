@@ -1,0 +1,35 @@
+FORMAL FEATURE ELIGIBILITY AND LEAKAGE AUDIT
+=======================================================
+
+Prediction point: End of current encounter (STOP)
+Target: Repeat encounter within 7 days after STOP
+Dataset observation end: 2022-02-05 20:27:36+00:00
+Total encounters: 27,891
+Eligible encounters: 27,887
+Excluded encounters: 4
+Positive cases: 9,766
+Negative cases: 18,121
+Positive rate: 35.02%
+
+Final modelling predictors:
+ENCOUNTERCLASS, DURATION_HOURS, AGE_AT_ENCOUNTER, PRIOR_ENCOUNTERS_30_DAYS, PRIOR_ENCOUNTERS_90_DAYS, DAYS_SINCE_PREVIOUS_ENCOUNTER, START_DAY_OF_WEEK, START_MONTH, START_HOUR
+Final modelling dataset: C:\Users\user\Documents\computational-materials\analystlab-healthcare-operations-ml\data\processed\repeat_encounter_7day_modeling_dataset.csv
+
+Important exclusions:
+- Patient identifier
+- Next encounter timestamp
+- Days to next encounter
+- Target label
+- Total claim cost
+- Payer coverage
+- Reason code and description
+- Procedures until timing is established
+- Death date
+
+Important review items:
+- Confirm availability of organization and payer at STOP
+- Confirm encounter code and description are finalized at STOP
+- Confirm base encounter cost is available at STOP
+- Review demographic features for fairness and necessity
+- Investigate extreme encounter durations
+- Use patient-aware validation to avoid patient overlap

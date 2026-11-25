@@ -1,0 +1,5 @@
+metric,count
+Zero or negative duration,0
+Duration greater than 24 hours,75
+Duration greater than 7 days,31
+Duration greater than 30 days,13

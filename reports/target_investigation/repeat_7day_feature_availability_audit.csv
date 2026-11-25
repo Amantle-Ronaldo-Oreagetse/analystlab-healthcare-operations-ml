@@ -1,0 +1,25 @@
+feature,source,availability,reason
+ENCOUNTERCLASS,encounters.csv,Candidate,Encounter type is likely known during the encounter. Confirm operational timing.
+START calendar features,encounters.csv,Candidate,Encounter start date and time are known at encounter end.
+AGE_AT_ENCOUNTER,patients.csv,Candidate,Age can be calculated at index encounter date. Do not use current age.
+GENDER,patients.csv,Candidate with review,Potential demographic feature. Confirm recorded value was available at prediction time.
+RACE,patients.csv,Candidate with review,Potential demographic feature. Assess responsible use and subgroup performance.
+ETHNICITY,patients.csv,Candidate with review,Potential demographic feature. Assess responsible use and subgroup performance.
+PRIOR_ENCOUNTER_COUNT,encounters.csv,Candidate,Calculated using only encounters before the index encounter.
+DAYS_SINCE_PREVIOUS_ENCOUNTER,encounters.csv,Candidate,Calculated from a previous encounter only.
+PRIOR_ENCOUNTERS_30_DAYS,encounters.csv,Candidate,Counts prior encounters in the 30 days before the index encounter.
+PRIOR_ENCOUNTERS_90_DAYS,encounters.csv,Candidate,Counts prior encounters in the 90 days before the index encounter.
+DURATION_HOURS,encounters.csv,Candidate with quality review,"Known at encounter end, but extreme duration values require investigation."
+ORGANIZATION,encounters.csv,Conditional,"Likely known during registration, but confirm the value is available by prediction time."
+PAYER,encounters.csv,Conditional,May be known during registration. Confirm availability and assess generalization.
+CODE,encounters.csv,Conditional,Encounter codes may be assigned or finalized after the encounter.
+DESCRIPTION,encounters.csv,Conditional,May be derived from encounter coding. Confirm it is available by encounter end.
+BASE_ENCOUNTER_COST,encounters.csv,Conditional,Confirm whether this cost is known at the prediction point.
+TOTAL_CLAIM_COST,encounters.csv,Exclude initially,Claim cost may be finalized after encounter end and may contain post-encounter information.
+PAYER_COVERAGE,encounters.csv,Exclude initially,May be determined or updated after the encounter. Availability is uncertain.
+REASONCODE,encounters.csv,Exclude initially,May be assigned after the encounter and could reveal outcome-related information.
+REASONDESCRIPTION,encounters.csv,Exclude initially,May be assigned after the encounter and could reveal outcome-related information.
+PROCEDURES,procedures.csv,Exclude initially,Procedure timestamps do not establish when the information was entered or available.
+DEATHDATE,patients.csv,Exclude,Could contain future information relative to the index encounter.
+PATIENT identifier,encounters.csv,Exclude from predictors,"Identifier is used for grouping and history construction, not as a model feature."
+NEXT_START_AFTER_STOP,encounters.csv,Target construction only,"Future encounter timing is used only to construct the target, never as a feature."

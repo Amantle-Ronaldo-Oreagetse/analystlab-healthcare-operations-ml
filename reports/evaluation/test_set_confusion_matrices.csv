@@ -1,0 +1,5 @@
+model,true_negatives,false_positives,false_negatives,true_positives
+Dummy Classifier,3628,0,1954,0
+Logistic Regression,3549,79,445,1509
+Random Forest,3583,45,383,1571
+RBF SVM,3554,74,509,1445

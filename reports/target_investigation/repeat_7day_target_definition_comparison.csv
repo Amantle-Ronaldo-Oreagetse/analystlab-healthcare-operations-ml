@@ -1,0 +1,3 @@
+target_definition,eligible_encounters,excluded_encounters,positive_cases,negative_cases,positive_rate_percent
+Start-to-start,27888,3,9748,18140,34.95410212277682
+Stop-to-next-start,27887,4,9766,18121,35.01990174633342

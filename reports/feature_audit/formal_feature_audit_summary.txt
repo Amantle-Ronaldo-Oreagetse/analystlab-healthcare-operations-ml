@@ -1,0 +1,87 @@
+FORMAL FEATURE ELIGIBILITY AUDIT
+======================================================================
+
+Prediction point: End of the current encounter, immediately after STOP.
+
+Prediction objective: Predict whether the patient will have another encounter within seven days after the current encounter ends.
+
+FEATURE ELIGIBILITY SUMMARY
+----------------------------------------------------------------------
+   dataset                 eligibility_decision  feature_count
+   derived                             Eligible              8
+   derived                              Exclude              2
+   derived                          Target only              1
+encounters                          Conditional              7
+encounters                             Eligible              1
+encounters        Eligible after transformation              1
+encounters Eligible for feature derivation only              1
+encounters                              Exclude              4
+  patients                          Conditional              5
+  patients Eligible for feature derivation only              1
+  patients                              Exclude              8
+  patients           Exclude from primary model              6
+
+FEATURES REQUIRING INVESTIGATION
+----------------------------------------------------------------------
+   dataset             feature                                                                                                                               reason                                                                                          required_action
+encounters        ORGANIZATION May identify the healthcare organization responsible for the encounter. Availability and generalisation implications require review. Verify prediction-time availability and assess whether the model should generalise across organizations.
+encounters               PAYER                                            Insurance payer information may be available by encounter end, but this must be verified.                                          Confirm availability and assess whether its use is appropriate.
+encounters                CODE                                                         The code's meaning and the time at which it is assigned must be established.                                Inspect the data dictionary and confirm it is available by encounter end.
+encounters         DESCRIPTION               The description may contain information about the encounter that is not necessarily available at the prediction point.                                             Inspect its meaning and timing before considering inclusion.
+encounters BASE_ENCOUNTER_COST            An encounter-level base cost may be available at encounter end, but its calculation and timing have not been established.                                   Verify when this value becomes available before considering inclusion.
+encounters          REASONCODE                                                                   The timing and meaning of reason coding have not been established.                                    Inspect the data dictionary and verify availability at encounter end.
+encounters   REASONDESCRIPTION                                                    The description may reflect information entered or finalised after the encounter.                                             Inspect its meaning and timing before considering inclusion.
+  patients             MARITAL                         May be available at prediction time, but its operational relevance and fairness implications require review.                                                    Consider only if there is a defensible justification.
+  patients              GENDER                                 May be available at prediction time, but its use requires a responsible-use and fairness assessment.                   Evaluate whether inclusion is justified and assess performance across relevant groups.
+  patients                CITY                                                    May provide geographic context but could introduce privacy and fairness concerns.                                    Consider only if geographically relevant and appropriately justified.
+  patients               STATE                                                    May provide geographic context but could introduce privacy and fairness concerns.                                    Consider only if geographically relevant and appropriately justified.
+  patients              COUNTY                                                    May provide geographic context but could introduce privacy and fairness concerns.                                    Consider only if geographically relevant and appropriately justified.
+
+ALL FEATURE DECISIONS
+----------------------------------------------------------------------
+   dataset                       feature                 eligibility_decision          leakage_risk
+encounters                            Id                              Exclude                  High
+encounters                         START        Eligible after transformation                   Low
+encounters                          STOP Eligible for feature derivation only High if used directly
+encounters                       PATIENT                              Exclude                  High
+encounters                  ORGANIZATION                          Conditional             Uncertain
+encounters                         PAYER                          Conditional             Uncertain
+encounters                ENCOUNTERCLASS                             Eligible                   Low
+encounters                          CODE                          Conditional             Uncertain
+encounters                   DESCRIPTION                          Conditional             Uncertain
+encounters           BASE_ENCOUNTER_COST                          Conditional             Uncertain
+encounters              TOTAL_CLAIM_COST                              Exclude                  High
+encounters                PAYER_COVERAGE                              Exclude                  High
+encounters                    REASONCODE                          Conditional             Uncertain
+encounters             REASONDESCRIPTION                          Conditional             Uncertain
+  patients                            Id                              Exclude                  High
+  patients                     BIRTHDATE Eligible for feature derivation only                   Low
+  patients                     DEATHDATE                              Exclude             Very high
+  patients                        PREFIX                              Exclude                   Low
+  patients                         FIRST                              Exclude                  High
+  patients                          LAST                              Exclude                  High
+  patients                        SUFFIX                              Exclude                   Low
+  patients                        MAIDEN                              Exclude                  High
+  patients                       MARITAL                          Conditional                   Low
+  patients                          RACE           Exclude from primary model                   Low
+  patients                     ETHNICITY           Exclude from primary model                   Low
+  patients                        GENDER                          Conditional                   Low
+  patients                    BIRTHPLACE           Exclude from primary model                   Low
+  patients                       ADDRESS                              Exclude                  High
+  patients                          CITY                          Conditional                   Low
+  patients                         STATE                          Conditional                   Low
+  patients                        COUNTY                          Conditional                   Low
+  patients                           ZIP           Exclude from primary model                   Low
+  patients                           LAT           Exclude from primary model                   Low
+  patients                           LON           Exclude from primary model                   Low
+   derived                DURATION_HOURS                             Eligible                   Low
+   derived              AGE_AT_ENCOUNTER                             Eligible                   Low
+   derived      PRIOR_ENCOUNTERS_30_DAYS                             Eligible                   Low
+   derived      PRIOR_ENCOUNTERS_90_DAYS                             Eligible                   Low
+   derived DAYS_SINCE_PREVIOUS_ENCOUNTER                             Eligible                   Low
+   derived                 START_WEEKDAY                             Eligible                   Low
+   derived                   START_MONTH                             Eligible                   Low
+   derived                    START_HOUR                             Eligible                   Low
+   derived         NEXT_START_AFTER_STOP                              Exclude             Very high
+   derived        DAYS_TO_NEXT_ENCOUNTER                              Exclude             Very high
+   derived           REPEAT_ENCOUNTER_7D                          Target only             Very high

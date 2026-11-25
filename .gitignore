@@ -1,0 +1,36 @@
+# Raw healthcare datasets - never publish
+data/raw/
+
+# Processed patient-level datasets
+data/processed/*
+!data/processed/example_inference.csv
+
+# Python environment and cache files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files and logs
+*.log
+*.tmp
+
+# Patient-level and detailed evaluation outputs
+reports/data_inspection/
+reports/inference/
+reports/evaluation/random_forest_false_negatives.csv
+reports/evaluation/random_forest_false_positives.csv
+reports/evaluation/random_forest_prediction_confidence.csv
+reports/evaluation/random_forest_test_predictions.csv
+reports/evaluation/random_forest_oof_threshold_predictions.csv

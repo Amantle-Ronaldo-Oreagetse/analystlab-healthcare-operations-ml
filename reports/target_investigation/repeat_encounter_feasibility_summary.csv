@@ -1,0 +1,4 @@
+repeat_window_days,total_encounters,eligible_encounters,excluded_due_to_incomplete_followup,repeat_encounters,non_repeat_encounters,repeat_percentage,non_repeat_percentage
+7,27891,27888,3,9748,18140,34.95410212277682,65.04589787722318
+30,27891,27721,170,16857,10864,60.809494606976656,39.19050539302334
+90,27891,27251,640,20078,7173,73.67803016403067,26.321969835969323

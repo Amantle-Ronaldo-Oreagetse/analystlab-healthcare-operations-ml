@@ -1,0 +1,4 @@
+dataset,encounter_count,encounter_percentage,patient_count,positive_cases,positive_rate_percentage
+Full dataset,27887,100.0,974,9766,35.01990174633342
+Training set,22305,79.98350485889483,778,7812,35.02353732347007
+Testing set,5582,20.016495141105175,196,1954,35.00537441777141
